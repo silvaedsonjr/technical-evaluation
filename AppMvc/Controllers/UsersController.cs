@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using AppMvc.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using AppMvc.Models;
 
 namespace AppMvc.Controllers
 {
@@ -43,8 +38,6 @@ namespace AppMvc.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Login,Password,Ativo")] User user)
@@ -75,14 +68,10 @@ namespace AppMvc.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Mensagem = "Não esqueça que esta ação é irrevesível.";
-            
             return View(user);
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Login,Password,Ativo")] User user)

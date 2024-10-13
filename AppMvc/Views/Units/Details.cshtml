@@ -1,0 +1,44 @@
+﻿@model AppMvc.Models.Unit
+
+@{
+    ViewBag.Title = "Detalhes da Unidade";
+}
+
+<h2 class="text-primary mb-4"><i class="fas fa-info-circle"></i> Detalhes da Unidade</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4 class="text-secondary">Informações da Unidade</h4>
+        <hr />
+        <dl class="row">
+            <!-- UniqueCode -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UniqueCode)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UniqueCode)
+            </dd>
+
+            <!-- Name -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <!-- IsActive -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IsActive, new { @class = Model.IsActive ? "text-success" : "text-danger" })
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary mr-2" })
+    @Html.ActionLink("Voltar à Lista", "Index", null, new { @class = "btn btn-secondary" })
+</div>

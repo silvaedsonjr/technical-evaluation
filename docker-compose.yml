@@ -1,0 +1,6 @@
+services:
+  appmvc:
+    image: ${DOCKER_REGISTRY-}appmvc
+    build:
+      context: AppMvc
+      dockerfile: Dockerfile

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AppMvc.Models.Unit>
+
+@{
+    ViewBag.Title = "Lista de Unidades";
+}
+
+<h2 class="text-primary mb-4"><i class="fas fa-list"></i> Lista de Unidades</h2>
+
+@*<div class="mb-3">
+    @Html.ActionLink("Criar Nova Unidade", "Create", null, new { @class = "btn btn-success btn-lg" })
+</div>*@
+
+<div class="mb-3">
+    <a href="@Url.Action("Create")" class="btn btn-primary btn-lg">
+        <i class="fas fa-plus"></i> Criar Nova Unidade
+    </a>
+</div>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.UniqueCode)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UniqueCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <span class="text-success">Ativo</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Inativo</span>
+                    }
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm mr-1" }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm mr-1" }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,4 @@
+services:
+  appmvc:
+    ports:
+      - "80"

@@ -1,0 +1,57 @@
+﻿@model AppMvc.Models.Collaborator
+
+@{
+    ViewBag.Title = "Deletar Colaborador";
+}
+
+<h2>Deletar Colaborador</h2>
+
+<h3>Você tem certeza que deseja deletar este colaborador?</h3>
+<div class="alert alert-warning">
+    <h4>Colaborador</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.CodigoUnidade)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.CodigoUnidade)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IdUnidade)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.IdUnidade)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Ativo) @if (Model.Ativo)
+            {<span class="text-success">Ativo</span>;
+            }
+            else
+            { <span class="text-danger">Inativo</span>;
+            }
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions">
+            <input type="submit" value="Deletar" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este colaborador?');" />
+            @Html.ActionLink("Voltar para a lista", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

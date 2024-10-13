@@ -1,0 +1,53 @@
+﻿@model AppMvc.Models.User
+
+@{
+    ViewBag.Title = "Excluir Usuário";
+}
+
+<h2 class="text-danger mb-4"><i class="fas fa-user-minus"></i> Excluir Usuário</h2>
+
+<h3 class="text-warning">Tem certeza de que deseja excluir este usuário?</h3>
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h4 class="text-secondary">Informações do Usuário</h4>
+        <hr />
+        <dl class="row">
+            <!-- Login -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Login)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Login)
+            </dd>
+
+            <!-- Password (ocultar por segurança) -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="col-sm-9">
+                <span class="text-muted">Senha não exibida por razões de segurança</span>
+            </dd>
+
+            <!-- Ativo -->
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Ativo, new { @class = Model.Ativo ? "text-success" : "text-danger" })
+            </dd>
+        </dl>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash-alt"></i> Excluir
+        </button>
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    </div>
+}

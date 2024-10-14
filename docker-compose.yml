@@ -1,6 +1,21 @@
+version: '3.8'
 services:
-  appmvc:
-    image: ${DOCKER_REGISTRY-}appmvc
-    build:
-      context: AppMvc
-      dockerfile: Dockerfile
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: rodonaves
+      POSTGRES_PASSWORD: rte@2024
+      POSTGRES_DB: rtedatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+volumes:
+  pgdata:
+
+networks:
+  mynetwork:

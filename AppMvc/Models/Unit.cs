@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace AppMvc.Models
 {
@@ -24,9 +21,8 @@ namespace AppMvc.Models
 
         [DisplayName("Status")]
         [Required(ErrorMessage = "O campo {0} é requerido")]
-        public bool IsActive { get; set; } // Propriedade de status
+        public bool IsActive { get; set; }
 
-        // Lista de colaboradores associados a esta unidade
-        //public ICollection<Collaborator> Collaborators { get; set; }
+        public ICollection<Collaborator> Collaborators { get; set; }
     }
 }

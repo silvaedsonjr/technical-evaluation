@@ -6,17 +6,16 @@ using System.Web.Mvc;
 
 namespace AppMvc.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Users
         public async Task<ActionResult> Index()
         {
             return View(await db.Users.ToListAsync());
         }
 
-        // GET: Users/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,13 +30,11 @@ namespace AppMvc.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Login,Password,Ativo")] User user)
@@ -55,7 +52,6 @@ namespace AppMvc.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,7 +67,6 @@ namespace AppMvc.Controllers
             return View(user);
         }
 
-        // POST: Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Login,Password,Ativo")] User user)
@@ -85,7 +80,6 @@ namespace AppMvc.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -100,7 +94,6 @@ namespace AppMvc.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

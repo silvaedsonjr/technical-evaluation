@@ -6,17 +6,16 @@ using System.Web.Mvc;
 
 namespace AppMvc.Controllers
 {
+    [Authorize]
     public class UnitsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Units
         public async Task<ActionResult> Index()
         {
             return View(await db.Units.ToListAsync());
         }
 
-        // GET: Units/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,7 +30,6 @@ namespace AppMvc.Controllers
             return View(unit);
         }
 
-        // GET: Units/Create
         public ActionResult Create()
         {
             return View();
@@ -51,7 +49,6 @@ namespace AppMvc.Controllers
             return View(unit);
         }
 
-        // GET: Units/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,7 +76,6 @@ namespace AppMvc.Controllers
             return View(unit);
         }
 
-        // GET: Units/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -94,7 +90,6 @@ namespace AppMvc.Controllers
             return View(unit);
         }
 
-        // POST: Units/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

@@ -6,17 +6,16 @@ using System.Web.Mvc;
 
 namespace AppMvc.Controllers
 {
+    [Authorize]
     public class CollaboratorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Collaborators
         public async Task<ActionResult> Index()
         {
             return View(await db.Collaborators.ToListAsync());
         }
 
-        // GET: Collaborators/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,13 +30,11 @@ namespace AppMvc.Controllers
             return View(collaborator);
         }
 
-        // GET: Collaborators/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Collaborators/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Nome,CodigoUnidade,IdUnidade,Ativo")] Collaborator collaborator)
@@ -52,7 +49,6 @@ namespace AppMvc.Controllers
             return View(collaborator);
         }
 
-        // GET: Collaborators/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -67,7 +63,6 @@ namespace AppMvc.Controllers
             return View(collaborator);
         }
 
-        // POST: Collaborators/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Nome,CodigoUnidade,IdUnidade,Ativo")] Collaborator collaborator)
@@ -81,7 +76,6 @@ namespace AppMvc.Controllers
             return View(collaborator);
         }
 
-        // GET: Collaborators/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -96,7 +90,6 @@ namespace AppMvc.Controllers
             return View(collaborator);
         }
 
-        // POST: Collaborators/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

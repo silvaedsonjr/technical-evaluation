@@ -7,14 +7,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AppMvc.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
             return userIdentity;
         }
     }
@@ -26,7 +23,7 @@ namespace AppMvc.Models
         {
         }
         public DbSet<User> Users { get; set; }
-        //public DbSet<Collaborator> Collaborators { get; set; }
+        public DbSet<Collaborator> Collaborators { get; set; }
         public DbSet<Unit> Units { get; set; }
 
         public static ApplicationDbContext Create()
@@ -42,7 +39,5 @@ namespace AppMvc.Models
 
             base.OnModelCreating(modelBuilder);
         }
-
-        public System.Data.Entity.DbSet<AppMvc.Models.Collaborator> Collaborators { get; set; }
     }
 }
